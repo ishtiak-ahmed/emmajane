@@ -11,13 +11,15 @@ const Cart = (props) => {
 
 
     return (
-        <div>
+        <div id="cart">
             <h3>Order Summary</h3>
             <p>Items ordered: {cart.length}</p>
             <p>Product Price: {total}</p>
             <p>Tax & Vat: {tax}</p>
             <p><small>Shipping Cost: {shippingCost}</small></p>
             <p>Total Cost: {grandTotal}</p>
+
+            <p id="dev"><small>Developed by Ishtiak Ahmed</small></p>
         </div>
     );
 };

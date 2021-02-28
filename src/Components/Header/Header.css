@@ -3,6 +3,9 @@
 }
 .header {
   text-align: center;
+  /* position: fixed; */
+  width: 100%;
+  background-color: #fff;
 }
 nav {
   line-height: 40px;

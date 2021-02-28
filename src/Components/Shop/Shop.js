@@ -12,13 +12,12 @@ const Shop = () => {
         console.log('Product added', product);
         const newCart = [...cart, product]
         setCart(newCart)
-        // console.log(cart)
     }
     return (
         <div className="shop-container">
             <div className="product-container">
                 {
-                    products.map(product => <Product handleAddProduct={handleAddProduct} product={product}></Product>)
+                    products.map(product => <Product handleAddProduct={handleAddProduct} key={product.key} product={product}></Product>)
                 }
             </div>
             <div className="cart-container">
