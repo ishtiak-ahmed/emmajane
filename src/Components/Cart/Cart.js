@@ -19,7 +19,7 @@ const Cart = (props) => {
             <p><small>Shipping Cost: {shippingCost}</small></p>
             <p>Total Cost: {grandTotal}</p>
 
-            <p id="dev"><small>Developed by Ishtiak Ahmed</small></p>
+            <p id="dev"><small>Developed by <a href="https://github.com/ishtiak-ahmed">Ishtiak Ahmed</a></small></p>
         </div>
     );
 };
