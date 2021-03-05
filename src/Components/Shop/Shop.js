@@ -3,8 +3,10 @@ import fakeData from '../../fakeData'
 import Cart from '../Cart/Cart';
 import Product from '../Product/Product';
 import "./Shop.css"
+import Button from '@material-ui/core/Button';
+
 const Shop = () => {
-    const [page, setPage] = useState(2)
+    const [page, setPage] = useState(1)
     let range = [[0, 0], [0, 10], [10, 20], [20, 30], [30, 40], [40, 50], [50, 60], [60, 70], [70, 81]]
     const currentRange = (num, num2) => fakeData.slice(num, num2)
     const currentProduct = currentRange(...range[page])
@@ -34,12 +36,12 @@ const Shop = () => {
         <div className="shop-container">
             <div className="product-container">
                 {
-                    products.map(product => <Product handleAddProduct={handleAddProduct} key={product.key} product={product}></Product>)
+                    products.map(product => <Product handleAddProduct={handleAddProduct} showButton={true} key={product.key} product={product}></Product>)
                 }
                 <div className="navbtn">
-                    <button onClick={showPrev}>Prev</button>
+                    <Button size="small" onClick={showPrev} variant="contained" color="primary">Prev</Button>
                     <span>Current Page {page}</span>
-                    <button onClick={showNext}>Next</button>
+                    <Button size="small" onClick={showNext} variant="contained" color="primary">Next</Button>
                 </div>
             </div>
             <div className="cart-container">
