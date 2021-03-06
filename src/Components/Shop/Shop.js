@@ -4,6 +4,7 @@ import Cart from '../Cart/Cart';
 import Product from '../Product/Product';
 import "./Shop.css"
 import Button from '@material-ui/core/Button';
+import { addToDatabaseCart } from '../../utilities/databaseManager';
 
 const Shop = () => {
     const [page, setPage] = useState(1)
@@ -14,9 +15,11 @@ const Shop = () => {
     const [cart, setCart] = useState([])
 
     const handleAddProduct = (product) => {
-        console.log('Product added', product);
         const newCart = [...cart, product]
         setCart(newCart)
+        const productCount = newCart.filter(pd => pd.key === product.key)
+        const count = productCount.length
+        addToDatabaseCart(product.key, count)
     }
     const showPrev = () => {
         console.log('prev button clicked')

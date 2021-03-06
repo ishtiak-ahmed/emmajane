@@ -5,7 +5,6 @@ import "./Product.css"
 import { Link } from 'react-router-dom';
 const Product = (props) => {
     const { img, name, price, stock, seller, key } = props.product
-    console.log(key)
     return (
         <div className="product-item">
             <div className="product-image">
