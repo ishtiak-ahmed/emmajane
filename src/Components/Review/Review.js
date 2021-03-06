@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import fakeData from '../../fakeData';
-import { getDatabaseCart } from '../../utilities/databaseManager';
-import Product from '../Product/Product';
+import { getDatabaseCart, removeFromDatabaseCart } from '../../utilities/databaseManager';
+import ReviewItem from './ReviewItem';
+import Cart from '../Cart/Cart';
+
+
 const Review = () => {
     const [cart, setCart] = useState([])
     useEffect(() => {
@@ -14,13 +17,26 @@ const Review = () => {
         })
         setCart(cartProduct)
     }, [])
+    const totalItem = cart.reduce((total, prd) => total + prd.count, 0)
+    const removeProduct = (key) => {
+        console.log('removing product with key ', key)
+        const newCart = cart.filter(pd => pd.key !== key)
+        setCart(newCart)
+        removeFromDatabaseCart(key)
+    }
     return (
-        <div>
-            <h2>Review Order</h2>
-            {
-                cart.map(product => <Product product={product}></Product>)
-            }
-        </div>
+        <main>
+            <div>
+                <h2>Total Item : {totalItem}</h2>
+                {
+                    cart.map(product => <ReviewItem event={removeProduct} key={product.key} product={product}></ReviewItem>)
+                }
+            </div>
+            <div>
+                <h2>This is cart</h2>
+                <Cart cart={cart}></Cart>
+            </div>
+        </main>
     );
 };
 

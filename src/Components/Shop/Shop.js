@@ -22,14 +22,12 @@ const Shop = () => {
         addToDatabaseCart(product.key, count)
     }
     const showPrev = () => {
-        console.log('prev button clicked')
         if (page > 1) {
             setPage(page - 1)
             setProducts(currentRange(...range[page]))
         }
     }
     const showNext = () => {
-        console.log("next button clicked")
         if (page < 8) {
             setPage(page + 1)
             setProducts(currentRange(...range[page]))
