@@ -14,6 +14,8 @@ const Review = () => {
         const cartProduct = productKeys.map(key => {
             const product = fakeData.find(pd => pd.key === key)
             product.count = saveCart[key]
+            product.totalPrice = product.price * product.count
+            console.log(product.totalPrice)
             return product
         })
         setCart(cartProduct)

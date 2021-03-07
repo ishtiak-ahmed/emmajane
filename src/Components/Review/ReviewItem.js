@@ -4,7 +4,7 @@ const ReviewItem = (props) => {
     const { name, count, price, seller, key } = props.product
     return (
         <div>
-            <h2>{name}</h2>
+            <h4>{name}</h4>
             <p>{seller}</p>
             <p>Quantity: {count}</p>
             <p>Total Price : {price * count}</p>

@@ -6,7 +6,11 @@ const Cart = (props) => {
 
     const cart = props.cart
     console.log(cart)
-    const total = formatNumber(cart.reduce((total, prd) => total + prd.price, 0));
+    const total = formatNumber(cart.reduce((total, prd) => {
+
+        return total + (prd.totalPrice ?? prd.price)
+    }
+        , 0));
     const shippingCost = total > 35 ? 0 : total > 15 ? 4.99 : 12.99;
     const tax = formatNumber(total / 10);
     const grandTotal = formatNumber(total + shippingCost + tax)
@@ -14,7 +18,6 @@ const Cart = (props) => {
 
     return (
         <div id="cart">
-            <h2>Hello Cart</h2>
             <h3 className="text-primary">Order Summary</h3>
             <p>Items ordered: {cart.length}</p>
             <p>Product Price: {total}</p>
