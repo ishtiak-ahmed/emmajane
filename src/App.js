@@ -24,7 +24,6 @@ function App() {
             <Shop></Shop>
           </Route>
           <Route path="/review">
-            <h1>Review Cart</h1>
             <Review></Review>
           </Route>
           <Route path="/manage">
