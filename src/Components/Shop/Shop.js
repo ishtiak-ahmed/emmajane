@@ -1,18 +1,32 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import fakeData from '../../fakeData'
 import Cart from '../Cart/Cart';
 import Product from '../Product/Product';
 import "./Shop.css"
 import Button from '@material-ui/core/Button';
-import { addToDatabaseCart } from '../../utilities/databaseManager';
+import { addToDatabaseCart, getDatabaseCart } from '../../utilities/databaseManager';
+import { NavLink } from 'react-router-dom';
 
 const Shop = () => {
     const [page, setPage] = useState(1)
     let range = [[0, 0], [0, 10], [10, 20], [20, 30], [30, 40], [40, 50], [50, 60], [60, 70], [70, 81]]
     const currentRange = (num, num2) => fakeData.slice(num, num2)
     const currentProduct = currentRange(...range[page])
+    console.log(currentProduct)
     const [products, setProducts] = useState(currentProduct)
     const [cart, setCart] = useState([])
+
+    useEffect(() => {
+        const saveCart = getDatabaseCart()
+        const productKeys = Object.keys(saveCart)
+        const cartProduct = productKeys.map(key => {
+            const product = fakeData.find(pd => pd.key === key)
+            product.count = saveCart[key]
+            product.totalPrice = product.price * product.count
+            return product
+        })
+        setCart(cartProduct)
+    }, [])
 
     const handleAddProduct = (product) => {
         const newCart = [...cart, product]
@@ -46,7 +60,11 @@ const Shop = () => {
                 </div>
             </div>
             <div className="cart-container">
-                <Cart cart={cart}></Cart>
+                <Cart cart={cart}>
+                    <NavLink to='/review'>
+                        <button>Review Order</button>
+                    </NavLink>
+                </Cart>
             </div>
         </div>
     );

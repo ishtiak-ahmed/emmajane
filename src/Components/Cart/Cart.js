@@ -5,7 +5,6 @@ const Cart = (props) => {
     const formatNumber = num => (Number(num.toFixed(2)))
 
     const cart = props.cart
-    console.log(cart)
     const total = formatNumber(cart.reduce((total, prd) => {
 
         return total + (prd.totalPrice ?? prd.price)
@@ -25,9 +24,9 @@ const Cart = (props) => {
             <p><small>Shipping Cost: {shippingCost}</small></p>
             <p>Total Cost: {grandTotal}</p>
             <br />
-            <NavLink to='/review'>
-                <button>Review Order</button>
-            </NavLink>
+            {
+                props.children
+            }
 
             <p id="dev"><small>Developed by <a href="https://github.com/ishtiak-ahmed">Ishtiak Ahmed</a></small></p>
         </div>

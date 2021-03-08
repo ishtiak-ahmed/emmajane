@@ -14,8 +14,8 @@ import Review from './Components/Review/Review';
 function App() {
   return (
     <div className="App">
-      <Header></Header>
       <Router>
+        <Header></Header>
         <Switch>
           <Route path="/shop">
             <Shop></Shop>
